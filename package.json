@@ -1,0 +1,25 @@
+{
+  "name": "electron_translation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "electron .",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isana-Citrus/electron_translation.git"
+  },
+  "author": "isana citrus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isana-Citrus/electron_translation/issues"
+  },
+  "homepage": "https://github.com/isana-Citrus/electron_translation#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "electron": "^17.0.0",
+    "request": "^2.88.2"
+  }
+}
