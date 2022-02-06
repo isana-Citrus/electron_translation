@@ -1,3 +1,49 @@
-<h1>hello world</h1>
-<script>
-</script>
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="./src/css/uikit.min.css">
+    <link rel="stylesheet" type="text/css" href="./src/css/main.css">
+    <script>
+        function win_quit() {
+            window.api.winquit();
+        };
+        //メインプロセスからのipcを受け取る
+        window.api.on_trans_exec((data) => {
+            const tt = document.getElementById("trans_text");
+            const ot = document.getElementById("original_text");
+            tt.innerHTML = data["tt"];
+            ot.innerHTML = data["ot"];
+        });
+    </script>
+    <title>コピペ翻訳機</title>
+</head>
+
+<body>
+    <header id="site-head">
+        <div class="uk-container uk-container-expand uk-tile-primary">
+            <div class="uk-grid uk-grid-medium uk-flex uk-flex-middle" data-uk-grid="">
+                <div class="uk-width-auto uk-first-column">
+                    <a href="#" class="uk-logo" title="">コピペ翻訳機</a>
+                </div>
+                <div class="uk-width-expand nav_drag_area">
+                    [ctrl or command] + [Alt] + [X]
+                </div>
+                <div class="uk-width-auto">
+                    <button class="uk-button uk-button-link" onclick="win_quit()"><span uk-icon="close"></span></button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="uk-container uk-container-expand">
+            <p id="trans_text" class="uk-text-lead">aaa</p>
+            <p id="original_text" class="uk-text-meta">bbb</p>
+        </div>
+    </main>
+    <script src="./src/js/uikit.min.js"></script>
+    <script src="./src/js/uikit-icons.min.js"></script>
+</body>
+
+</html>
+<!--style=" -webkit-app-region: drag;" -->

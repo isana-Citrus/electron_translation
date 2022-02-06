@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/isana-Citrus/electron_translation#readme",
   "dependencies": {
+    "axios": "^0.25.0",
     "dotenv": "^16.0.0",
     "electron": "^17.0.0",
     "request": "^2.88.2"
