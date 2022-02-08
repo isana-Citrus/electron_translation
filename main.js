@@ -1,7 +1,7 @@
 const electron = require("electron");
 const ts = require("./translate");
 //electron読み込んでapp,BrowserWindowを取り出す
-const { app, BrowserWindow, globalShortcut, clipboard, ipcMain, } = electron;
+const { app, BrowserWindow, globalShortcut, clipboard, ipcMain, Notification, } = electron;
 const path = require("path");           //pathはjoin用
 let mainWindow;
 //electron が準備終わったとき
@@ -32,13 +32,13 @@ app.whenReady().then(() => {
     const ret = globalShortcut.register('CommandOrControl+Alt+X', async () => {
         console.log('CommandOrControl+Alt+X is pressed');
         const original_text = clipboard.readText();//クリップボードのテキストを取得
-        mainWindow.hide();
         let result = await ts.en2ja(original_text);
         const data = {
             ot: original_text,
             tt: result
         }
         mainWindow.show();
+        showNotification(data);
         mainWindow.webContents.send("trans_exec", data);//mainWindowへipc通信を送信
         console.log(result);
     })
@@ -65,3 +65,6 @@ app.on('will-quit', () => {
 ipcMain.handle('quit', (event, data) => {
     app.quit();
 });
+function showNotification(data) {
+    new Notification({ title: "翻訳完了", body: data["tt"] }).show()
+}
