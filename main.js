@@ -37,8 +37,11 @@ app.whenReady().then(() => {
             ot: original_text,
             tt: result
         }
+        if (process.platform === "linux") {
+            mainWindow.hide();
+        }
         mainWindow.show();
-        showNotification(data);
+        //showNotification(data);
         mainWindow.webContents.send("trans_exec", data);//mainWindowへipc通信を送信
         console.log(result);
     })

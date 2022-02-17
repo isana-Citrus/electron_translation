@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config();//ユーザー情報保存用
 const apiurl = 'https://mt-auto-minhon-mlt.ucri.jgn-x.jp'; // 基底URL (https://xxx.jpまでを入力)
 const key = process.env.key; // API key
 const secret = process.env.secret; // API secret
@@ -18,7 +18,7 @@ async function post(url, param) {
     console.log("post result url:", url, " status:", res.status);
     return res;
 };
-
+//アクセストークンを取得する部分
 async function get_access_token() {
     const param = {
         grant_type: 'client_credentials',
@@ -29,7 +29,8 @@ async function get_access_token() {
     const result = await post(apiurl + '/oauth2/token.php', param);
     return result.data.access_token;
 };
-//mode
+//翻訳文と翻訳モードを受け取ったら翻訳結果を返してくれるやつ
+//引数:mode 元サイトではAPI値と書かれている部分
 //- generalNT_ja_en
 //- generalNT_en_ja
 //-
@@ -48,7 +49,7 @@ async function trans_api(text, mode) {
     //console.log(result);
     return result.data.resultset.result.text
 }
-//(async () => { console.log(await trans_api("hello", "generalNT_en_ja")); })();
+(async () => { console.log(await trans_api("hello", "generalNT_en_ja")); })();
 exports.en2ja = async (text) => {
     const result = await trans_api(text, "generalNT_en_ja");
     return result
