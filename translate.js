@@ -49,7 +49,7 @@ async function trans_api(text, mode) {
     //console.log(result);
     return result.data.resultset.result.text
 }
-(async () => { console.log(await trans_api("hello", "generalNT_en_ja")); })();
+//(async () => { console.log(await trans_api("hello", "generalNT_en_ja")); })();
 exports.en2ja = async (text) => {
     const result = await trans_api(text, "generalNT_en_ja");
     return result
