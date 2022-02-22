@@ -2,3 +2,5 @@ node_modules/*
 package-lock.json
 .env
 src/*/uikit*
+src/*/uikit.*
+src/*/uikit-icons.*
