@@ -6,17 +6,15 @@ const path = require("path");           //pathはjoin用
 let mainWindow;
 //electron が準備終わったとき
 app.on("ready", function () {
-
     //新しいウインドウを開く
     mainWindow = new BrowserWindow({
         width: 600,
-        height: 120,
+        height: 140,
         frame: false,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
         },
     });
-    mainWindow.setTitle("clipboard_transration");
 
     //mainWindowでhtmlファイルを開く
     //"file://" + path.join(__dirname, 'index.html'); => file://作業ディレクトリ/index.html
@@ -27,6 +25,7 @@ app.on("ready", function () {
         app.quit();
     });
 });
+
 app.whenReady().then(() => {
     // 'CommandOrControl+Alt+X' ショートカットのリスナーを登録します。
     const ret = globalShortcut.register('CommandOrControl+Alt+X', async () => {
@@ -37,8 +36,11 @@ app.whenReady().then(() => {
             ot: original_text,
             tt: result
         }
+        if (process.platform === "linux") {
+            mainWindow.hide();
+        }
         mainWindow.show();
-        showNotification(data);
+        //showNotification(data);
         mainWindow.webContents.send("trans_exec", data);//mainWindowへipc通信を送信
         console.log(result);
     })
@@ -67,4 +69,4 @@ ipcMain.handle('quit', (event, data) => {
 });
 function showNotification(data) {
     new Notification({ title: "翻訳完了", body: data["tt"] }).show()
-}
+}   
