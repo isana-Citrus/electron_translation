@@ -1,5 +1,5 @@
 {
-  "name": "electron_5ch",
+  "name": "electron_translation",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/isana-Citrus/electron_5ch.git"
+    "url": "git+https://github.com/isana-Citrus/electron_translation.git"
   },
   "author": "isana citrus",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/isana-Citrus/electron_5ch/issues"
+    "url": "https://github.com/isana-Citrus/electron_translation/issues"
   },
-  "homepage": "https://github.com/isana-Citrus/electron_5ch#readme",
+  "homepage": "https://github.com/isana-Citrus/electron_translation#readme",
   "dependencies": {
     "axios": "^0.25.0",
     "dotenv": "^16.0.0",
